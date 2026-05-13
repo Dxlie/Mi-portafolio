@@ -1,18 +1,251 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Mi Portafolio</title>
-<link rel="stylesheet" href="Style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dylan — Dev & Musician</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Hola, soy Dylan 👋</h1>
-<p>Desarrollador web y programador</p>
 
-<h2>Proyectos</h2>
-<ul>
-<li>Proyecto 1</li>
-<li>Proyecto 2</li>
-</ul>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">DY<em>.</em></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#hobbies">Hobbies</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre">Sobre mí</a>
+  <a href="#hobbies">Hobbies</a>
+  <a href="#skills">Skills</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">// desarrollador web & programador</p>
+        <h1 class="hero-title">
+          HOLA,<br>SOY<br><span class="pur">DYLAN</span>
+        </h1>
+        <p class="hero-sub">
+          Construyo cosas en la web con <strong>código limpio</strong> y pasión por el detalle.
+          También toco guitarra, juego videojuegos y me pierdo en buena música.
+        </p>
+        <div class="hero-ctas">
+          <a href="#hobbies" class="btn btn-fill">Mis hobbies ↓</a>
+          <a href="#contacto" class="btn btn-outline">Hablemos →</a>
+        </div>
+      </div>
+      <div class="hero-deco">
+        <div class="hero-deco-line"></div>
+        <p class="hero-deco-scroll">Scroll</p>
+        <div class="hero-deco-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="container">
+    <span class="section-label reveal">// about_me</span>
+    <h2 class="section-heading reveal">Sobre mí</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Soy <strong>Dylan</strong>, desarrollador web y programador apasionado por crear experiencias digitales que funcionen bien y se vean mejor. Me gusta el código ordenado, los diseños oscuros y las ideas que tienen impacto.</p>
+        <p>Tengo mentalidad de aprendizaje continuo: si algo no sé, lo busco, lo aprendo y lo aplico. El mundo del desarrollo cambia todo el tiempo y eso es exactamente lo que me tiene enganchado.</p>
+        <p>Fuera del código me encontrás con una guitarra, unos auriculares o frente a la pantalla disfrutando un buen videojuego. Esas cosas también me hacen mejor dev — enseñan a crear, a escuchar y a nunca rendirse en el nivel difícil.</p>
+      </div>
+      <div class="about-badges reveal">
+        <div class="badge">
+          <span class="badge-icon">💻</span>
+          <div class="badge-info"><strong>Desarrollador Web</strong><span>Frontend & Backend</span></div>
+        </div>
+        <div class="badge">
+          <span class="badge-icon">🎸</span>
+          <div class="badge-info"><strong>Guitarrista</strong><span>Músico autodidacta</span></div>
+        </div>
+        <div class="badge">
+          <span class="badge-icon">🎮</span>
+          <div class="badge-info"><strong>Gamer</strong><span>Explorador de mundos digitales</span></div>
+        </div>
+        <div class="badge">
+          <span class="badge-icon">🎵</span>
+          <div class="badge-info"><strong>Amante de la música</strong><span>Múltiples géneros y estilos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section id="hobbies">
+  <div class="container">
+    <span class="section-label reveal">// hobbies</span>
+    <h2 class="section-heading reveal">Lo que me mueve</h2>
+    <div class="hobbies-grid">
+
+      <div class="hobby-card reveal">
+        <span class="hobby-emoji">💻</span>
+        <h3 class="hobby-title">PROGRAMAR</h3>
+        <p class="hobby-desc">Más que un trabajo, programar es mi hobby principal. Disfruto construir proyectos desde cero, explorar nuevos lenguajes y resolver problemas que parecen imposibles hasta que dejan de serlo. Hay algo muy satisfactorio en ver una idea convertirse en código funcional.</p>
+        <div class="hobby-tags">
+          <span class="htag">HTML / CSS</span>
+          <span class="htag">JavaScript</span>
+          <span class="htag">Python</span>
+          <span class="htag">Side projects</span>
+          <span class="htag">Problem solving</span>
+          <span class="htag">Open Source</span>
+        </div>
+      </div>
+
+      <div class="hobby-card reveal">
+        <span class="hobby-emoji">🎸</span>
+        <h3 class="hobby-title">GUITARRA</h3>
+        <p class="hobby-desc">La guitarra es mi forma de desconectarme. Aprender un riff nuevo, improvisar o simplemente tocar algo que ya sé — todo tiene su lugar. La música tiene esa magia de expresar cosas que las palabras no alcanzan, y la guitarra es mi canal favorito para eso.</p>
+        <div class="hobby-tags">
+          <span class="htag">Rock</span>
+          <span class="htag">Metal</span>
+          <span class="htag">Riffs</span>
+          <span class="htag">Solos</span>
+          <span class="htag">Fingerpicking</span>
+          <span class="htag">Acordes</span>
+        </div>
+      </div>
+
+      <div class="hobby-card reveal">
+        <span class="hobby-emoji">🎮</span>
+        <h3 class="hobby-title">VIDEOJUEGOS</h3>
+        <p class="hobby-desc">Los videojuegos son arte interactivo. Me fascinan los mundos bien construidos, las narrativas que te atrapan y el desafío de superar algo difícil. También me inspiran como dev: pensar en cómo están hechos me da ideas para mis propios proyectos.</p>
+        <div class="hobby-tags">
+          <span class="htag">RPG</span>
+          <span class="htag">Acción</span>
+          <span class="htag">Indie</span>
+          <span class="htag">Multiplayer</span>
+          <span class="htag">PC Gaming</span>
+          <span class="htag">Game design</span>
+        </div>
+      </div>
+
+      <div class="hobby-card reveal">
+        <span class="hobby-emoji">🎵</span>
+        <h3 class="hobby-title">MÚSICA</h3>
+        <p class="hobby-desc">La música es el hilo invisible que conecta todo lo que hago. Programo con música de fondo, aprendo canciones en guitarra, los videojuegos que más me gustan tienen OSTs increíbles. Es un universo de géneros, emociones y texturas sonoras que nunca termina de sorprenderme.</p>
+        <div class="hobby-tags">
+          <span class="htag">Rock alternativo</span>
+          <span class="htag">Metal</span>
+          <span class="htag">Lo-fi</span>
+          <span class="htag">Soundtracks</span>
+          <span class="htag">Playlists</span>
+          <span class="htag">Conciertos</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <span class="section-label reveal">// skills</span>
+    <h2 class="section-heading reveal">Habilidades</h2>
+    <div class="skills-wrap">
+      <div class="skill-block reveal">
+        <p class="skill-block-title">Frontend</p>
+        <div class="skill-list">
+          <span class="stag">HTML5</span>
+          <span class="stag">CSS3</span>
+          <span class="stag">JavaScript</span>
+          <span class="stag">React</span>
+          <span class="stag">Responsive</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <p class="skill-block-title">Backend</p>
+        <div class="skill-list">
+          <span class="stag">Node.js</span>
+          <span class="stag">Python</span>
+          <span class="stag">REST APIs</span>
+          <span class="stag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <p class="skill-block-title">Herramientas</p>
+        <div class="skill-list">
+          <span class="stag">Git</span>
+          <span class="stag">GitHub</span>
+          <span class="stag">VS Code</span>
+          <span class="stag">Figma</span>
+          <span class="stag">Linux</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <span class="section-label reveal">// contact</span>
+    <h2 class="section-heading reveal">Hablemos</h2>
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <p>¿Tenés un proyecto, una idea o simplemente querés hablar de código, música o videojuegos? Escribime, siempre estoy abierto a nuevas conversaciones.</p>
+        <div class="socials">
+          <a href="https://github.com/" target="_blank" class="social-row"><span class="s-icon">⌥</span> GitHub</a>
+          <a href="https://linkedin.com/" target="_blank" class="social-row"><span class="s-icon">⊹</span> LinkedIn</a>
+          <a href="mailto:dylan@email.com" class="social-row"><span class="s-icon">✉</span> dylan@email.com</a>
+        </div>
+      </div>
+      <form class="cform reveal" id="cform" novalidate>
+        <div class="fgroup">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="fgroup">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="fgroup">
+          <label for="msg">Mensaje</label>
+          <textarea id="msg" placeholder="¿En qué puedo ayudarte?" required></textarea>
+        </div>
+        <div class="fstatus" id="fstatus"></div>
+        <button type="submit" class="btn btn-fill">Enviar mensaje →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2025 <span>Dylan</span> — Hecho con 💜 y mucho café</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
+
