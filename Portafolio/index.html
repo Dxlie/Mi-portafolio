@@ -6,11 +6,141 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dylan — Dev & Musician</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Outfit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { 
+    background: #000000;
+    color: #f1f5f9 !important; 
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 50px,
+        rgba(168, 85, 247, 0.4) 50px,
+        rgba(168, 85, 247, 0.4) 52px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 80px,
+        rgba(192, 132, 252, 0.25) 80px,
+        rgba(35, 17, 51, 0.959) 82px
+      ),
+      #000000;
+    background-attachment: fixed;
+    pointer-events: none;
+    z-index: 0;
+    animation: techPulse 8s ease-in-out infinite;
+    box-shadow: inset 0 0 100px rgba(168, 85, 247, 0.05);
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 50%), 
+      radial-gradient(ellipse at 80% 50%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 0%, rgba(147, 51, 234, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+    animation: techGlow 10s ease-in-out infinite;
+  }
+  * { cursor: none !important; }
+  :root { --font-heading: 'Space Grotesk', sans-serif; --font-body: 'Outfit', sans-serif; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+  .cursor { position: fixed; width: 12px; height: 12px; background: #c084fc; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: screen; transform: translate(-50%, -50%); transition: width 0.18s, height 0.18s, background 0.18s; box-shadow: 0 0 20px #c084fc, 0 0 40px rgba(192, 132, 252, 0.6); }
+  .cursor--active { width: 8px; height: 8px; }
+  .cursor--hover { background: #e879f9; box-shadow: 0 0 30px #e879f9, 0 0 60px rgba(232, 121, 249, 0.8); }
+  .cursor-ring { position: fixed; width: 40px; height: 40px; background: transparent; border: 2px solid #c084fc; border-radius: 50%; pointer-events: none; z-index: 9998; box-sizing: border-box; transform: translate(-50%, -50%); transition: width 0.22s, height 0.22s, border-color 0.22s, box-shadow 0.22s; box-shadow: 0 0 20px rgba(192, 132, 252, 0.6), inset 0 0 10px rgba(192, 132, 252, 0.2); }
+  .cursor-ring--active { width: 28px; height: 28px; }
+  .cursor-ring--hover { border-color: #e879f9; width: 64px; height: 64px; box-shadow: 0 0 40px rgba(232, 121, 249, 0.8), inset 0 0 20px rgba(232, 121, 249, 0.3), 0 0 60px rgba(192, 132, 252, 0.5); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-fadeUp { animation: fadeUp 0.6s ease-out forwards; }
+  @keyframes techPulse { 
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
+  }
+  @keyframes techGlow { 
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+  @keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(10px); }
+  }
+  @keyframes float1 { 
+    0%, 100% { transform: translate(0, 0) scale(1); } 
+    25% { transform: translate(30px, -40px) scale(1.1); }
+    50% { transform: translate(-20px, 40px) scale(0.9); }
+    75% { transform: translate(40px, 20px) scale(1.05); }
+  }
+  @keyframes float2 { 
+    0%, 100% { transform: translate(0, 0) scale(1); } 
+    25% { transform: translate(-35px, 35px) scale(0.95); }
+    50% { transform: translate(25px, -30px) scale(1.08); }
+    75% { transform: translate(-15px, -40px) scale(0.98); }
+  }
+  @keyframes float3 { 
+    0%, 100% { transform: translate(0, 0) scale(1); } 
+    25% { transform: translate(25px, -30px) scale(1.05); }
+    50% { transform: translate(-30px, -20px) scale(0.92); }
+    75% { transform: translate(35px, 35px) scale(1.1); }
+  }
+  .blob { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 2; }
+  .b1 { 
+    width: 500px; height: 500px; 
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.2), transparent 70%); 
+    top: -100px; left: -100px; 
+    animation: float1 20s ease-in-out infinite;
+    box-shadow: 0 0 60px rgba(192, 132, 252, 0.3), inset 0 0 40px rgba(192, 132, 252, 0.1);
+  }
+  .b2 { 
+    width: 400px; height: 400px; 
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15), transparent 70%); 
+    bottom: 10%; right: -50px; 
+    animation: float2 22s ease-in-out infinite;
+    box-shadow: 0 0 50px rgba(168, 85, 247, 0.25), inset 0 0 30px rgba(192, 132, 252, 0.08);
+  }
+  .b3 { 
+    width: 350px; height: 350px; 
+    background: radial-gradient(circle, rgba(147, 51, 234, 0.12), transparent 70%); 
+    top: 40%; left: 25%; 
+    animation: float3 24s ease-in-out infinite;
+    box-shadow: 0 0 40px rgba(147, 51, 234, 0.2), inset 0 0 25px rgba(192, 132, 252, 0.05);
+  }
+  /* Lineas tecnologicas animadas */
+  .tech-lines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 60px,
+        rgba(192, 132, 252, 0.15) 60px,
+        rgba(192, 132, 252, 0.15) 62px
+      );
+    animation: scanlines 6s linear infinite;
+    box-shadow: inset 0 0 80px rgba(168, 85, 247, 0.08);
+  }
+</style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 overflow-x-hidden">
 
+<div class="tech-lines"></div>
 <div class="blob b1"></div>
 <div class="blob b2"></div>
 <div class="blob b3"></div>
@@ -19,80 +149,101 @@
 <div class="cursor-ring" id="cursorRing"></div>
 
 <!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">DY<em>.</em></a>
-  <ul class="nav-links">
-    <li><a href="#sobre">Sobre mí</a></li>
-    <li><a href="#hobbies">Hobbies</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 backdrop-blur-md bg-slate-950/75 border-b border-purple-900/30">
+  <a href="#hero" class="text-2xl font-bold tracking-widest text-slate-100">DY<span class="text-purple-400">.</span></a>
+  <ul class="hidden md:flex gap-8 list-none">
+    <li><a href="#sobre" class="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-purple-400 transition-colors">Sobre mí</a></li>
+    <li><a href="#hobbies" class="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-purple-400 transition-colors">Hobbies</a></li>
+    <li><a href="#skills" class="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-purple-400 transition-colors">Skills</a></li>
+    <li><a href="#contacto" class="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-purple-400 transition-colors">Contacto</a></li>
   </ul>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
+  <div class="hamburger md:hidden flex flex-col gap-1 cursor-pointer p-1" id="hamburger">
+    <span class="block w-6 h-0.5 bg-purple-400 rounded transition-all"></span>
+    <span class="block w-6 h-0.5 bg-purple-400 rounded transition-all"></span>
+    <span class="block w-6 h-0.5 bg-purple-400 rounded transition-all"></span>
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#sobre">Sobre mí</a>
-  <a href="#hobbies">Hobbies</a>
-  <a href="#skills">Skills</a>
-  <a href="#contacto">Contacto</a>
+<div class="mobile-menu hidden fixed top-16 left-0 right-0 bg-slate-950/95 border-b border-purple-900/30 p-6 z-40 md:hidden flex-col gap-0" id="mobileMenu">
+  <a href="#sobre" class="py-3 border-b border-purple-900/30 text-sm uppercase tracking-widest text-slate-400 hover:text-purple-400">Sobre mí</a>
+  <a href="#hobbies" class="py-3 border-b border-purple-900/30 text-sm uppercase tracking-widest text-slate-400 hover:text-purple-400">Hobbies</a>
+  <a href="#skills" class="py-3 border-b border-purple-900/30 text-sm uppercase tracking-widest text-slate-400 hover:text-purple-400">Skills</a>
+  <a href="#contacto" class="py-3 text-sm uppercase tracking-widest text-slate-400 hover:text-purple-400">Contacto</a>
 </div>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="container">
-    <div class="hero-inner">
+<section id="hero" class="min-h-screen flex items-center pt-20 px-4">
+  <div class="max-w-5xl mx-auto w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
       <div>
-        <p class="hero-eyebrow">// desarrollador web & programador</p>
-        <h1 class="hero-title">
-          HOLA,<br>SOY<br><span class="pur">DYLAN</span>
+        <p class="text-xs uppercase tracking-widest text-purple-400 mb-4 opacity-0 animate-fadeUp" style="animation-delay: 0.3s">// Desarrollador Web & Programador</p>
+        <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6 opacity-0 animate-fadeUp leading-tight" style="animation-delay: 0.5s">
+          HOLA,<br>SOY<br><span class="bg-gradient-to-r from-purple-500 to-purple-400 bg-clip-text text-transparent">DYLAN</span>
         </h1>
-        <p class="hero-sub">
-          Construyo cosas en la web con <strong>código limpio</strong> y pasión por el detalle.
-          También toco guitarra, juego videojuegos y me pierdo en buena música.
+        <p class="text-lg text-slate-300 leading-relaxed max-w-md mb-8 opacity-0 animate-fadeUp" style="animation-delay: 0.7s">
+          Construyo experiencias web con <span class="text-purple-400 font-semibold">código limpio</span> y pasión por el detalle. Toco guitarra, juego videojuegos y me pierdo en buena música.
         </p>
-        <div class="hero-ctas">
-          <a href="#hobbies" class="btn btn-fill">Mis hobbies ↓</a>
-          <a href="#contacto" class="btn btn-outline">Hablemos →</a>
+        <div class="flex flex-col sm:flex-row gap-4 opacity-0 animate-fadeUp" style="animation-delay: 0.9s">
+          <a href="#hobbies" class="btn-fill px-8 py-3 bg-purple-600 hover:bg-purple-500 text-white font-semibold uppercase tracking-wider rounded-lg transition-all hover:-translate-y-0.5 shadow-lg shadow-purple-600/50 text-center">Mis Hobbies ↓</a>
+          <a href="#contacto" class="btn-outline px-8 py-3 border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 font-semibold uppercase tracking-wider rounded-lg transition-all hover:-translate-y-0.5 text-center">Hablemos →</a>
         </div>
       </div>
-      <div class="hero-deco">
-        <div class="hero-deco-line"></div>
-        <p class="hero-deco-scroll">Scroll</p>
-        <div class="hero-deco-line"></div>
+      <div class="hidden md:flex flex-col items-center gap-6 opacity-0 animate-fadeUp" style="animation-delay: 1.2s">
+        <div class="w-1 h-24 bg-gradient-to-b from-purple-600 to-transparent"></div>
+        <p class="text-xs uppercase tracking-widest text-slate-500 writing-mode-vertical">Scroll</p>
+        <div class="w-1 h-24 bg-gradient-to-b from-purple-600 to-transparent"></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SOBRE MÍ -->
-<section id="sobre">
-  <div class="container">
-    <span class="section-label reveal">// about_me</span>
-    <h2 class="section-heading reveal">Sobre mí</h2>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>Soy <strong>Dylan</strong>, desarrollador web y programador apasionado por crear experiencias digitales que funcionen bien y se vean mejor. Me gusta el código ordenado, los diseños oscuros y las ideas que tienen impacto.</p>
-        <p>Tengo mentalidad de aprendizaje continuo: si algo no sé, lo busco, lo aprendo y lo aplico. El mundo del desarrollo cambia todo el tiempo y eso es exactamente lo que me tiene enganchado.</p>
-        <p>Fuera del código me encontrás con una guitarra, unos auriculares o frente a la pantalla disfrutando un buen videojuego. Esas cosas también me hacen mejor dev — enseñan a crear, a escuchar y a nunca rendirse en el nivel difícil.</p>
+<section id="sobre" class="py-24 px-4 border-t border-purple-900/30">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-xs uppercase tracking-widest text-purple-400 mb-2 reveal">// about_me</p>
+    <h2 class="text-5xl md:text-6xl font-black tracking-tight mb-12 reveal">Sobre mí</h2>
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="space-y-4 reveal">
+        <p class="text-lg text-slate-300 leading-relaxed">Soy <span class="text-purple-400 font-semibold">Dylan</span>, desarrollador web y programador apasionado por crear experiencias digitales que funcionen bien y se vean mejor. Me gusta el código ordenado, los diseños oscuros y las ideas que tienen impacto.</p>
+        <p class="text-lg text-slate-300 leading-relaxed">Tengo mentalidad de aprendizaje continuo: si algo no sé, lo busco, lo aprendo y lo aplico. El mundo del desarrollo cambia todo el tiempo y eso es exactamente lo que me tiene enganchado.</p>
+        <p class="text-lg text-slate-300 leading-relaxed">Fuera del código me encontrás con una guitarra, unos auriculares o frente a la pantalla disfrutando un buen videojuego. Esas cosas también me hacen mejor dev.</p>
       </div>
-      <div class="about-badges reveal">
-        <div class="badge">
-          <span class="badge-icon">💻</span>
-          <div class="badge-info"><strong>Desarrollador Web</strong><span>Frontend & Backend</span></div>
+      <div class="space-y-3 reveal">
+        <div class="bg-gradient-to-r from-slate-800/50 to-slate-800/20 border border-purple-900/30 rounded-xl p-4 hover:border-purple-500/50 transition-all hover:translate-x-1">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">💻</span>
+            <div>
+              <p class="font-bold text-slate-100">Desarrollador Web</p>
+              <p class="text-sm text-slate-400">Frontend & Backend</p>
+            </div>
+          </div>
         </div>
-        <div class="badge">
-          <span class="badge-icon">🎸</span>
-          <div class="badge-info"><strong>Guitarrista</strong><span>Músico autodidacta</span></div>
+        <div class="bg-gradient-to-r from-slate-800/50 to-slate-800/20 border border-purple-900/30 rounded-xl p-4 hover:border-purple-500/50 transition-all hover:translate-x-1">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">🎸</span>
+            <div>
+              <p class="font-bold text-slate-100">Guitarrista</p>
+              <p class="text-sm text-slate-400">Músico autodidacta</p>
+            </div>
+          </div>
         </div>
-        <div class="badge">
-          <span class="badge-icon">🎮</span>
-          <div class="badge-info"><strong>Gamer</strong><span>Explorador de mundos digitales</span></div>
+        <div class="bg-gradient-to-r from-slate-800/50 to-slate-800/20 border border-purple-900/30 rounded-xl p-4 hover:border-purple-500/50 transition-all hover:translate-x-1">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">🎮</span>
+            <div>
+              <p class="font-bold text-slate-100">Gamer</p>
+              <p class="text-sm text-slate-400">Explorador de mundos digitales</p>
+            </div>
+          </div>
         </div>
-        <div class="badge">
-          <span class="badge-icon">🎵</span>
-          <div class="badge-info"><strong>Amante de la música</strong><span>Múltiples géneros y estilos</span></div>
+        <div class="bg-gradient-to-r from-slate-800/50 to-slate-800/20 border border-purple-900/30 rounded-xl p-4 hover:border-purple-500/50 transition-all hover:translate-x-1">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">🎵</span>
+            <div>
+              <p class="font-bold text-slate-100">Amante de la Música</p>
+              <p class="text-sm text-slate-400">Múltiples géneros y estilos</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -100,105 +251,103 @@
 </section>
 
 <!-- HOBBIES -->
-<section id="hobbies">
-  <div class="container">
-    <span class="section-label reveal">// hobbies</span>
-    <h2 class="section-heading reveal">Lo que me mueve</h2>
-    <div class="hobbies-grid">
-
-      <div class="hobby-card reveal">
-        <span class="hobby-emoji">💻</span>
-        <h3 class="hobby-title">PROGRAMAR</h3>
-        <p class="hobby-desc">Más que un trabajo, programar es mi hobby principal. Disfruto construir proyectos desde cero, explorar nuevos lenguajes y resolver problemas que parecen imposibles hasta que dejan de serlo. Hay algo muy satisfactorio en ver una idea convertirse en código funcional.</p>
-        <div class="hobby-tags">
-          <span class="htag">HTML / CSS</span>
-          <span class="htag">JavaScript</span>
-          <span class="htag">Python</span>
-          <span class="htag">Side projects</span>
-          <span class="htag">Problem solving</span>
-          <span class="htag">Open Source</span>
+<section id="hobbies" class="py-24 px-4 border-t border-purple-900/30">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-xs uppercase tracking-widest text-purple-400 mb-2 reveal">// hobbies</p>
+    <h2 class="text-5xl md:text-6xl font-black tracking-tight mb-12 reveal">Lo que me mueve</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="group bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-purple-900/30 rounded-2xl p-8 hover:border-purple-500/50 hover:bg-gradient-to-br hover:from-slate-800/60 hover:to-slate-900/60 transition-all duration-300 reveal overflow-hidden relative">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+        <span class="text-5xl mb-3 block group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">💻</span>
+        <h3 class="text-2xl font-black tracking-wider mb-3 uppercase">Programar</h3>
+        <p class="text-slate-300 leading-relaxed mb-4">Más que un trabajo, programar es mi hobby principal. Disfruto construir proyectos desde cero, explorar nuevos lenguajes y resolver problemas.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">HTML / CSS</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">JavaScript</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Python</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Side Projects</span>
         </div>
       </div>
 
-      <div class="hobby-card reveal">
-        <span class="hobby-emoji">🎸</span>
-        <h3 class="hobby-title">GUITARRA</h3>
-        <p class="hobby-desc">La guitarra es mi forma de desconectarme. Aprender un riff nuevo, improvisar o simplemente tocar algo que ya sé — todo tiene su lugar. La música tiene esa magia de expresar cosas que las palabras no alcanzan, y la guitarra es mi canal favorito para eso.</p>
-        <div class="hobby-tags">
-          <span class="htag">Rock</span>
-          <span class="htag">Metal</span>
-          <span class="htag">Riffs</span>
-          <span class="htag">Solos</span>
-          <span class="htag">Fingerpicking</span>
-          <span class="htag">Acordes</span>
+      <div class="group bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-purple-900/30 rounded-2xl p-8 hover:border-purple-500/50 hover:bg-gradient-to-br hover:from-slate-800/60 hover:to-slate-900/60 transition-all duration-300 reveal overflow-hidden relative">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+        <span class="text-5xl mb-3 block group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">🎸</span>
+        <h3 class="text-2xl font-black tracking-wider mb-3 uppercase">Guitarra</h3>
+        <p class="text-slate-300 leading-relaxed mb-4">La guitarra es mi forma de desconectarme. Aprender un riff nuevo, improvisar o simplemente tocar algo que ya sé.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Rock</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Metal</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Riffs</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Solos</span>
         </div>
       </div>
 
-      <div class="hobby-card reveal">
-        <span class="hobby-emoji">🎮</span>
-        <h3 class="hobby-title">VIDEOJUEGOS</h3>
-        <p class="hobby-desc">Los videojuegos son arte interactivo. Me fascinan los mundos bien construidos, las narrativas que te atrapan y el desafío de superar algo difícil. También me inspiran como dev: pensar en cómo están hechos me da ideas para mis propios proyectos.</p>
-        <div class="hobby-tags">
-          <span class="htag">RPG</span>
-          <span class="htag">Acción</span>
-          <span class="htag">Indie</span>
-          <span class="htag">Multiplayer</span>
-          <span class="htag">PC Gaming</span>
-          <span class="htag">Game design</span>
+      <div class="group bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-purple-900/30 rounded-2xl p-8 hover:border-purple-500/50 hover:bg-gradient-to-br hover:from-slate-800/60 hover:to-slate-900/60 transition-all duration-300 reveal overflow-hidden relative">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+        <span class="text-5xl mb-3 block group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">🎮</span>
+        <h3 class="text-2xl font-black tracking-wider mb-3 uppercase">Videojuegos</h3>
+        <p class="text-slate-300 leading-relaxed mb-4">Los videojuegos son arte interactivo. Me fascinan los mundos bien construidos y las narrativas que te atrapan.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">RPG</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Acción</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Indie</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">PC Gaming</span>
         </div>
       </div>
 
-      <div class="hobby-card reveal">
-        <span class="hobby-emoji">🎵</span>
-        <h3 class="hobby-title">MÚSICA</h3>
-        <p class="hobby-desc">La música es el hilo invisible que conecta todo lo que hago. Programo con música de fondo, aprendo canciones en guitarra, los videojuegos que más me gustan tienen OSTs increíbles. Es un universo de géneros, emociones y texturas sonoras que nunca termina de sorprenderme.</p>
-        <div class="hobby-tags">
-          <span class="htag">Rock alternativo</span>
-          <span class="htag">Metal</span>
-          <span class="htag">Lo-fi</span>
-          <span class="htag">Soundtracks</span>
-          <span class="htag">Playlists</span>
-          <span class="htag">Conciertos</span>
+      <div class="group bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-purple-900/30 rounded-2xl p-8 hover:border-purple-500/50 hover:bg-gradient-to-br hover:from-slate-800/60 hover:to-slate-900/60 transition-all duration-300 reveal overflow-hidden relative">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+        <span class="text-5xl mb-3 block group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">🎵</span>
+        <h3 class="text-2xl font-black tracking-wider mb-3 uppercase">Música</h3>
+        <p class="text-slate-300 leading-relaxed mb-4">La música es el hilo invisible que conecta todo lo que hago. Programo con música de fondo, aprendo canciones en guitarra.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Rock Alternativo</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Metal</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Lo-fi</span>
+          <span class="text-xs bg-purple-500/20 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full">Soundtracks</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- SKILLS -->
-<section id="skills">
-  <div class="container">
-    <span class="section-label reveal">// skills</span>
-    <h2 class="section-heading reveal">Habilidades</h2>
-    <div class="skills-wrap">
-      <div class="skill-block reveal">
-        <p class="skill-block-title">Frontend</p>
-        <div class="skill-list">
-          <span class="stag">HTML5</span>
-          <span class="stag">CSS3</span>
-          <span class="stag">JavaScript</span>
-          <span class="stag">React</span>
-          <span class="stag">Responsive</span>
+<section id="skills" class="py-24 px-4 border-t border-purple-900/30">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-xs uppercase tracking-widest text-purple-400 mb-2 reveal">// skills</p>
+    <h2 class="text-5xl md:text-6xl font-black tracking-tight mb-12 reveal">Habilidades</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-purple-900/30 rounded-xl p-6 hover:border-purple-500/50 transition-all hover:-translate-y-1 reveal">
+        <p class="text-sm uppercase tracking-widest text-purple-400 mb-4 font-bold">Frontend</p>
+        <div class="space-y-2">
+          <span class="inline-block text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">HTML5</span>
+          <span class="inline-block ml-2 text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">CSS3</span>
+          <span class="inline-block ml-2 text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">JavaScript</span>
+          <br />
+          <span class="inline-block text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">React</span>
+          <span class="inline-block ml-2 text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">Responsive</span>
         </div>
       </div>
-      <div class="skill-block reveal">
-        <p class="skill-block-title">Backend</p>
-        <div class="skill-list">
-          <span class="stag">Node.js</span>
-          <span class="stag">Python</span>
-          <span class="stag">REST APIs</span>
-          <span class="stag">SQL</span>
+      <div class="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-purple-900/30 rounded-xl p-6 hover:border-purple-500/50 transition-all hover:-translate-y-1 reveal">
+        <p class="text-sm uppercase tracking-widest text-purple-400 mb-4 font-bold">Backend</p>
+        <div class="space-y-2">
+          <span class="inline-block text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">Node.js</span>
+          <span class="inline-block ml-2 text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">Python</span>
+          <br />
+          <span class="inline-block text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">REST APIs</span>
+          <span class="inline-block ml-2 text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">SQL</span>
         </div>
       </div>
-      <div class="skill-block reveal">
-        <p class="skill-block-title">Herramientas</p>
-        <div class="skill-list">
-          <span class="stag">Git</span>
-          <span class="stag">GitHub</span>
-          <span class="stag">VS Code</span>
-          <span class="stag">Figma</span>
-          <span class="stag">Linux</span>
+      <div class="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-purple-900/30 rounded-xl p-6 hover:border-purple-500/50 transition-all hover:-translate-y-1 reveal">
+        <p class="text-sm uppercase tracking-widest text-purple-400 mb-4 font-bold">Herramientas</p>
+        <div class="space-y-2">
+          <span class="inline-block text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">Git</span>
+          <span class="inline-block ml-2 text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">GitHub</span>
+          <br />
+          <span class="inline-block text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">VS Code</span>
+          <span class="inline-block ml-2 text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">Figma</span>
+          <br />
+          <span class="inline-block text-xs bg-slate-700/50 border border-slate-600/50 text-slate-300 px-3 py-1 rounded-full">Linux</span>
         </div>
       </div>
     </div>
@@ -206,46 +355,57 @@
 </section>
 
 <!-- CONTACTO -->
-<section id="contacto">
-  <div class="container">
-    <span class="section-label reveal">// contact</span>
-    <h2 class="section-heading reveal">Hablemos</h2>
-    <div class="contact-grid">
-      <div class="contact-left reveal">
-        <p>¿Tenés un proyecto, una idea o simplemente querés hablar de código, música o videojuegos? Escribime, siempre estoy abierto a nuevas conversaciones.</p>
-        <div class="socials">
-          <a href="https://github.com/" target="_blank" class="social-row"><span class="s-icon">⌥</span> GitHub</a>
-          <a href="https://linkedin.com/" target="_blank" class="social-row"><span class="s-icon">⊹</span> LinkedIn</a>
-          <a href="mailto:dylan@email.com" class="social-row"><span class="s-icon">✉</span> dylan@email.com</a>
+<section id="contacto" class="py-24 px-4 border-t border-purple-900/30">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-xs uppercase tracking-widest text-purple-400 mb-2 reveal">// contact</p>
+    <h2 class="text-5xl md:text-6xl font-black tracking-tight mb-12 reveal">Hablemos</h2>
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="reveal">
+        <p class="text-lg text-slate-300 leading-relaxed mb-8">¿Tenés un proyecto, una idea o simplemente querés hablar de código, música o videojuegos? Escribime, siempre estoy abierto a nuevas conversaciones.</p>
+        <div class="space-y-3">
+          <a href="https://github.com/" target="_blank" class="btn flex items-center gap-3 p-3 border-b border-purple-900/30 text-slate-300 hover:text-purple-400 hover:border-purple-500/50 transition-all hover:pl-4">
+            <span class="text-xl">⌥</span> GitHub
+          </a>
+          <a href="https://linkedin.com/" target="_blank" class="btn flex items-center gap-3 p-3 border-b border-purple-900/30 text-slate-300 hover:text-purple-400 hover:border-purple-500/50 transition-all hover:pl-4">
+            <span class="text-xl">⊹</span> LinkedIn
+          </a>
+          <a href="mailto:dylan@email.com" class="btn flex items-center gap-3 p-3 border-b border-purple-900/30 text-slate-300 hover:text-purple-400 hover:border-purple-500/50 transition-all hover:pl-4">
+            <span class="text-xl">✉</span> dylan@email.com
+          </a>
         </div>
       </div>
-      <form class="cform reveal" id="cform" novalidate>
-        <div class="fgroup">
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" placeholder="Tu nombre" required>
+      <form class="space-y-4 reveal" id="cform" novalidate>
+        <div class="flex flex-col gap-2">
+          <label for="nombre" class="text-xs uppercase tracking-widest text-slate-400">Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" required class="bg-slate-800/40 border border-purple-900/30 rounded-lg px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-purple-500/50 focus:outline-none focus:ring-1 focus:ring-purple-500/30 transition-all">
         </div>
-        <div class="fgroup">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="tu@email.com" required>
+        <div class="flex flex-col gap-2">
+          <label for="email" class="text-xs uppercase tracking-widest text-slate-400">Email</label>
+          <input type="email" id="email" placeholder="tu@email.com" required class="bg-slate-800/40 border border-purple-900/30 rounded-lg px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-purple-500/50 focus:outline-none focus:ring-1 focus:ring-purple-500/30 transition-all">
         </div>
-        <div class="fgroup">
-          <label for="msg">Mensaje</label>
-          <textarea id="msg" placeholder="¿En qué puedo ayudarte?" required></textarea>
+        <div class="flex flex-col gap-2">
+          <label for="msg" class="text-xs uppercase tracking-widest text-slate-400">Mensaje</label>
+          <textarea id="msg" placeholder="¿En qué puedo ayudarte?" required class="bg-slate-800/40 border border-purple-900/30 rounded-lg px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-purple-500/50 focus:outline-none focus:ring-1 focus:ring-purple-500/30 transition-all resize-none min-h-[130px]"></textarea>
         </div>
         <div class="fstatus" id="fstatus"></div>
-        <button type="submit" class="btn btn-fill">Enviar mensaje →</button>
+        <button type="submit" class="btn-fill w-full px-8 py-3 bg-purple-600 hover:bg-purple-500 text-white font-semibold uppercase tracking-wider rounded-lg transition-all hover:-translate-y-0.5 shadow-lg shadow-purple-600/50">Enviar mensaje →</button>
       </form>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <p>© 2025 <span>Dylan</span> — Hecho con 💜 y mucho café</p>
-  </div>
+<footer class="border-t border-purple-900/30 py-6 text-center text-slate-400 text-xs tracking-widest relative z-10">
+  <p>© 2025 <span class="text-purple-400">Dylan</span> — Hecho con 💜 y mucho café</p>
 </footer>
 
 <script src="script.js"></script>
+<style>
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeUp { animation: fadeUp 0.6s ease-out forwards; }
+</style>
 </body>
 </html>
 
