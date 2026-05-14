@@ -1,37 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const cursor = document.querySelector('.cursor');
-  const cursorRing = document.querySelector('.cursor-ring');
-  
-  if (cursor && cursorRing) {
-    document.addEventListener('mousemove', event => {
-      cursor.style.left = `${event.clientX}px`;
-      cursor.style.top = `${event.clientY}px`;
-      cursorRing.style.left = `${event.clientX}px`;
-      cursorRing.style.top = `${event.clientY}px`;
-    });
-
-    document.addEventListener('mousedown', () => {
-      cursor.classList.add('cursor--active');
-      cursorRing.classList.add('cursor-ring--active');
-    });
-
-    document.addEventListener('mouseup', () => {
-      cursor.classList.remove('cursor--active');
-      cursorRing.classList.remove('cursor-ring--active');
-    });
-
-    document.querySelectorAll('a, button, .btn').forEach(element => {
-      element.addEventListener('mouseenter', () => {
-        cursor.classList.add('cursor--hover');
-        cursorRing.classList.add('cursor-ring--hover');
-      });
-      element.addEventListener('mouseleave', () => {
-        cursor.classList.remove('cursor--hover');
-        cursorRing.classList.remove('cursor-ring--hover');
-      });
-    });
-  }
-
   // Hamburger menu
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
